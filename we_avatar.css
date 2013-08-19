@@ -1,0 +1,32 @@
+
+/* we_avatar */ 
+.we_avatar{
+  margin-bottom:0px;
+  border:1px solid #e5e5e5;
+}
+
+.we_avatar[data-mode=empty]{
+	background-color: #eaeaea;
+}
+.we_avatar[data-mode=empty] i{
+	margin-top:30px;
+	display:block;
+	color:#a0a0a0;
+}
+
+.patient_avatar .btn{
+  margin-top:45px;
+}
+
+.we_avatar canvas, .we_avatar video{
+  width:inherit;
+  height:inherit;
+}
+
+.we_avatar_toolbar{
+  margin-bottom:10px;
+}
+
+.we_avatar_inputfile{
+  display:none;
+}
