@@ -7,14 +7,14 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
 ## Requirements
 
 * jQuery
-* [Twitter Bootstrap 2](http://getbootstrap.com/2.3.2/)
-* Font-awesome (optional)
+* [Twitter Bootstrap 2](http://getbootstrap.com/2.3.2/) (default styling)
+* [Font-awesome](http://fortawesome.github.io/Font-Awesome/) (optional)
 
 ## Installation
 
 ### 1. Add we_avatar.js and we_avatar.css to your project.
 
-### 2. Place this HTML where you want the image viewer/uploader to be:
+### 2. Place this markup
 
     <div id="user_avatar" class="we_avatar centered_content" 
         data-mode="empty"
@@ -26,7 +26,7 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
     </div>
     <div id="user_avatar_toolbar" class="we_avatar_toolbar"></div>
 
-### 3. Setup the parameters:
+### 3. Customize
 
 * data-mode => "image" if there's already an image to show
 * data-image-url => URL of the image to show
@@ -35,7 +35,7 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
 * data-delete-url => URL where a DELETE request will be made to delete the image.
 * style => Size of the viewer/uploader
 
-### 4. Fire the magic:
+### 4. Fire it up
 
     <script type="text/javascript">
     jQuery(function(){
