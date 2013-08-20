@@ -4,6 +4,8 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
 
 ![](http://i.imgur.com/eAVDZwO.png) ![](http://i.imgur.com/7G7hvqt.png)
 
+[View Demo](http://ceneon.github.io/we_avatar/demo.html)
+
 ## Requirements
 
 * jQuery

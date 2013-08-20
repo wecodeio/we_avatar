@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+	<title>we_avatar example</title>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="we_avatar.js"></script>
+	<link href="we_avatar.css" rel="stylesheet" />
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="row"><div class="span6 offset3">
+			<h1>We_avatar</h1>
+			<p>Take a picture with your webcam or upload a file</p>
+
+			<div id="user_avatar" class="we_avatar centered_content" 
+		        data-mode="empty"
+		        data-image-url=""
+		        data-image-dataurl=""
+		        data-post-url=""
+		        data-delete-url=""
+		        style="width:320px; height:240px">
+		    </div>
+		    <div id="user_avatar_toolbar" class="we_avatar_toolbar"></div>
+
+		    <p>&nbsp;</p>
+		    <p><a class="btn" href="http://github.com/ceneon/we_avatar"><i class="icon-github"></i> Source code</a></p>
+		</div></div>
+	</div>
+
+    <script type="text/javascript">
+    jQuery(function(){
+        we_start("user_avatar");
+    })
+    </script>
+
+</body>
+</html>
