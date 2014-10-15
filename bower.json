@@ -1,0 +1,26 @@
+{
+  "name": "we-avatar",
+  "main": "we_avatar.js",
+  "version": "dev-master",
+  "homepage": "https://github.com/wecodeio/we_avatar",
+  "authors": [
+    "Nicolás Cerrini <nicolas@wecode.io>"
+  ],
+  "description": "Choose an avatar image from your webcam or a file upload using HTML5 and jQuery.",
+  "keywords": [
+    "we",
+    "wecode",
+    "avatar",
+    "we-avatar",
+    "html5",
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
