@@ -20,26 +20,26 @@ function we_update(dom_id) {
         else
         {    avatar.css("background-image", "url(" + avatar.attr("data-image-url") + ")"); }
         avatar.html("");
-        ht += '<button class="btn" onclick="we_init_video(\'' + dom_id + '\');"><i class="icon-camera"></i></a>';
-        ht += '<button class="btn" onclick="we_upload(\'' + dom_id + '\');"><i class="icon-cloud-upload"></i></a>';
-        ht += '<button class="btn" onclick="we_delete(\'' + dom_id + '\');"><i class="icon-trash"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_delete(\'' + dom_id + '\');"><i class="fa fa-trash"></i></a>';
         break;
     case 'empty':
-        avatar.html('<i class="icon-user icon-4x"></i>');
-        ht += '<button class="btn" onclick="we_init_video(\'' + dom_id + '\');"><i class="icon-camera"></i></a>';
-        ht += '<button class="btn" onclick="we_upload(\'' + dom_id + '\');"><i class="icon-cloud-upload"></i></a>';
+        avatar.html('<i class="fa fa-user fa-4x"></i>');
+        ht += '<button class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
         break;
     case 'video':
-        ht += '<button class="btn" onclick="we_take_picture(\'' + dom_id + '\')"><i class="icon-camera"></i></a>';
-        ht += '<button class="btn" onclick="we_cancel(\'' + dom_id + '\')"><i class="icon-remove"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_take_picture(\'' + dom_id + '\')"><i class="fa fa-camera"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\')"><i class="fa fa-remove"></i></a>';
         break;
     case 'review':
-        ht += '<button class="btn" onclick="we_save(\'' + dom_id + '\')"><i class="icon-ok"></i></a>';
-        ht += '<button class="btn" onclick="we_cancel(\'' + dom_id + '\', true)"><i class="icon-remove"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-ok"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', true)"><i class="fa fa-remove"></i></a>';
         break;
     case 'review_upload':
-        ht += '<button class="btn" onclick="we_save(\'' + dom_id + '\')"><i class="icon-ok"></i></a>';
-        ht += '<button class="btn" onclick="we_cancel(\'' + dom_id + '\', false, true)"><i class="icon-remove"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-ok"></i></a>';
+        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', false, true)"><i class="fa fa-remove"></i></a>';
         break;
     }
     ht += '</div>';

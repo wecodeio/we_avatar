@@ -9,7 +9,7 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
 ## Requirements
 
 * jQuery
-* [Twitter Bootstrap 2](http://getbootstrap.com/2.3.2/) (default styling)
+* [Twitter Bootstrap 3](http://getbootstrap.com/) (default styling)
 * [Font-awesome](http://fortawesome.github.io/Font-Awesome/) (optional)
 
 ## Installation

@@ -6,12 +6,12 @@
 }
 
 .we_avatar[data-mode=empty]{
-	background-color: #eaeaea;
+  background-color: #eaeaea;
 }
 .we_avatar[data-mode=empty] i{
-	margin-top:30px;
-	display:block;
-	color:#a0a0a0;
+  margin-top:30px;
+  display:block;
+  color:#a0a0a0;
 }
 
 .patient_avatar .btn{
@@ -28,9 +28,9 @@
 }
 
 .we_avatar_inputfile{
-  display:none;
+  display:none !important;
 }
 
 .centered_content{
-	text-align:center;
+  text-align:center;
 }
