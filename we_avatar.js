@@ -20,26 +20,27 @@ function we_update(dom_id) {
         else
         {    avatar.css("background-image", "url(" + avatar.attr("data-image-url") + ")"); }
         avatar.html("");
-        ht += '<button class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_delete(\'' + dom_id + '\');"><i class="fa fa-trash"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_delete(\'' + dom_id + '\');"><i class="fa fa-trash"></i></a>';
         break;
     case 'empty':
         avatar.html('<i class="fa fa-user fa-4x"></i>');
-        ht += '<button class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
+        avatar.css("background-image", "");
+        ht += '<button type="button" class="btn btn-default" onclick="we_init_video(\'' + dom_id + '\');"><i class="fa fa-camera"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_upload(\'' + dom_id + '\');"><i class="fa fa-cloud-upload"></i></a>';
         break;
     case 'video':
-        ht += '<button class="btn btn-default" onclick="we_take_picture(\'' + dom_id + '\')"><i class="fa fa-camera"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\')"><i class="fa fa-remove"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_take_picture(\'' + dom_id + '\')"><i class="fa fa-camera"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\')"><i class="fa fa-remove"></i></a>';
         break;
     case 'review':
-        ht += '<button class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-ok"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', true)"><i class="fa fa-remove"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-check"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', true)"><i class="fa fa-remove"></i></a>';
         break;
     case 'review_upload':
-        ht += '<button class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-ok"></i></a>';
-        ht += '<button class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', false, true)"><i class="fa fa-remove"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_save(\'' + dom_id + '\')"><i class="fa fa-check"></i></a>';
+        ht += '<button type="button" class="btn btn-default" onclick="we_cancel(\'' + dom_id + '\', false, true)"><i class="fa fa-remove"></i></a>';
         break;
     }
     ht += '</div>';
@@ -53,9 +54,14 @@ function we_init_video(dom_id) {
     we_update(dom_id);
     var canvas = jQuery("#" + dom_id + " canvas")[0];
     var video = jQuery("#" + dom_id + " video")[0];
+    var msg_container = jQuery("#" + dom_id + "_msg");
     var width = parseInt(avatar.css("width"));
     var streaming = false,
       height = 0;
+
+    if( msg_container.length )
+        msg_container.fadeOut();  
+
     navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
     navigator.getMedia({ video: true, audio: false },
         function(stream) {
@@ -103,6 +109,7 @@ function we_cancel(dom_id, return_to_video, return_from_upload_review) {
     var avatar = jQuery("#" + dom_id);
     var video = jQuery("#" + dom_id + " video")[0];
     var canvas = jQuery("#" + dom_id + " canvas")[0];
+
     if(return_to_video==true)
     {
         canvas.width = canvas.width;
@@ -135,17 +142,28 @@ function we_save(dom_id)
     var avatar = jQuery("#" + dom_id);
     var canvas = jQuery("#" + dom_id + " canvas")[0];
     var canvas2 = document.createElement( "canvas" );
+    var msg_container = jQuery("#" + dom_id + "_msg");
     canvas2.width = canvas.videoWidth || canvas.width;
     canvas2.height = canvas.videoHeight || canvas.height;
     canvas2.getContext( "2d" ).drawImage( canvas, 0, 0 );
     var dataURL = canvas2.toDataURL();
+
+    if( msg_container.length )
+        msg_container.fadeOut();
+
     jQuery.post( avatar.attr("data-post-url") , { dataurl: dataURL })
     .done(function(data){
-        if(data=="OK"){
+        if( data=="OK"){
             //show some success
+            if( msg_container.length )
+                msg_container.html( '<i class="fa fa-check"></i>' + " Imagen guardada con éxito" ).fadeIn();
         }
-        else
-            alert(data);
+        else{
+            if( msg_container.length )
+                msg_container.html( data ).fadeIn();
+            else
+                alert(data);
+        }
     }).fail(function(){
         alert("Something wrong happened! / ¡Ocurrió un error!");
     });
@@ -159,15 +177,23 @@ function we_delete(dom_id)
 {
     var avatar = jQuery("#" + dom_id);
     var canvas = jQuery("#" + dom_id + " canvas")[0];
+    var msg_container = jQuery("#" + dom_id + "_msg");
+
+    if( msg_container.length )
+        msg_container.fadeOut();
+
     if(confirm('Are you sure? / ¿Está seguro?'))
         jQuery.ajax({
-            url: avatar.attr("data-post-url"),
+            url: avatar.attr("data-delete-url"),
             type: 'DELETE', 
+            dataType: 'text',
             success: function(data){
                 avatar.attr("data-image-url", "");
                 avatar.attr("data-image-dataurl", "");
                 avatar.attr("data-mode", "empty")
                 we_update(dom_id);
+                if( msg_container.length )
+                    msg_container.html( '<i class="fa fa-check"></i>' + " Imagen eliminada con éxito" ).fadeIn();
             }, 
             error: function(){
                 alert("Something wrong happened! / ¡Ocurrió un error!");
@@ -183,7 +209,12 @@ function we_upload(dom_id)
 function we_upload_callback(dom_id)
 {
     var avatar = jQuery("#" + dom_id),
-        inputfile = jQuery("#" + dom_id + "_inputfile");
+        inputfile = jQuery("#" + dom_id + "_inputfile"),
+        msg_container = jQuery("#" + dom_id + "_msg");
+
+    if( msg_container.length )
+        msg_container.fadeOut();  
+
     if(inputfile[0].files.length < 1)
         return;
     var file = inputfile[0].files[0];
