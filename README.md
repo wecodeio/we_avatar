@@ -28,7 +28,7 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
     </div>
     <div id="user_avatar_toolbar" class="we_avatar_toolbar"></div>
 
-    <div id="client_avatar_msg" class="we_avatar_msg alert alert-info"></div>
+    <div id="user_avatar_msg" class="we_avatar_msg alert alert-info"></div>
 
 ### 3. Customize
 
