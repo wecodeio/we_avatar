@@ -28,6 +28,8 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
     </div>
     <div id="user_avatar_toolbar" class="we_avatar_toolbar"></div>
 
+    <div id="user_avatar_msg" class="we_avatar_msg alert alert-info"></div>
+
 ### 3. Customize
 
 * data-mode => "image" if there's already an image to show
@@ -49,7 +51,18 @@ Note: Obviously you can change "user_avatar" to whatever you want.
 
 ### 5. Code the back-end side
 
-*Rails example coming soon...*
+```ruby
+def upload_avatar
+    @user = User.find(params[:id])
+    if params[:dataurl]
+        if @user.update_attribute( :avatar, params[:dataurl] )
+            render text: "OK"
+        else
+            render text: "Error, try again"
+        end
+    end     
+end
+```     
 
 ---
 ## To-Do

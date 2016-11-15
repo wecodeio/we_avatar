@@ -34,3 +34,8 @@
 .centered_content{
   text-align:center;
 }
+
+.we_avatar_msg{
+  display: none;
+  margin:10px 0;
+}
