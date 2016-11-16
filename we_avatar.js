@@ -47,8 +47,10 @@ var we_avatar = {
     },
     update: function(){
         var self = this;
-        var ht = '<div class="btn-group">';
-        self.avatar.data( "mode", this.options.mode );
+        
+        self.avatar.attr( "data-mode", this.options.mode );
+        
+        var ht = '<div class="btn-group">';        
         switch ( this.options.mode ) {
             case 'image':
                 if( this.options.image_dataurl !== "")
@@ -60,7 +62,7 @@ var we_avatar = {
                 ht += '<button type="button" class="btn btn-default upload"><i class="fa fa-cloud-upload"></i></a>';
                 ht += '<button type="button" class="btn btn-default delete"><i class="fa fa-trash"></i></a>';
                 break;
-            case 'empty':
+            case 'empty':                
                 this.avatar.html('<i class="fa fa-user fa-4x"></i>');
                 this.avatar.css("background", "");
                 this.avatar.css("background-color", "#eaeaea");
@@ -177,8 +179,9 @@ var we_handlers = {
                 {    obj.options.mode = "image"; }
             }
             else
-            {
-                obj.stream.stop();
+            {   
+                if( obj.stream )
+                    obj.stream.stop();
                 if( obj.options.image_url == "" && obj.options.image_dataurl == "" )
                 {    obj.options.mode = "empty"; }
                 else
@@ -226,9 +229,7 @@ var we_handlers = {
         if( typeof obj == "undefined" ) return;
         
         var canvas = obj.avatar.find("canvas")[0];   
-
-        obj.msg_container.fadeOut();
-        console.log("delete");
+        obj.msg_container.fadeOut();        
         if( confirm( obj.messages.delete_confirm ) ){
             jQuery.ajax({
                 url: obj.options.delete_url,
