@@ -78,7 +78,6 @@ end
 ## To-Do
 
 * file upload -> RESIZED preview on canvas
-* show post error/success
 * CONFIG: button overlay texts & localized texts
 * CONFIG: height and width (canvas & posted image)
 
