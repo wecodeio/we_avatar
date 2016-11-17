@@ -119,7 +119,7 @@ var we_handlers = {
                     var vendorURL = window.URL || window.webkitURL;
                     video.src = vendorURL.createObjectURL(stream);
                 }
-                obj.stream = stream.getTracks()[0]; //stream.stop() depricated;                
+                obj.stream = stream.getTracks()[0]; //stream.stop() deprecated;                
                 video.play();
             },
             function(err) {
