@@ -112,14 +112,14 @@ var we_handlers = {
 
         navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
         navigator.getMedia({ video: true, audio: false },
-            function(stream) {
+            function(stream) {                
                 if (navigator.mozGetUserMedia) {
                     video.mozSrcObject = stream;
                 } else {
                     var vendorURL = window.URL || window.webkitURL;
                     video.src = vendorURL.createObjectURL(stream);
                 }
-                obj.stream = stream;
+                obj.stream = stream.getTracks()[0]; //stream.stop() depricated;                
                 video.play();
             },
             function(err) {
@@ -178,7 +178,7 @@ var we_handlers = {
                 {    obj.options.mode = "image"; }
             }
             else
-            {   
+            {                      
                 if( obj.stream )
                     obj.stream.stop();
                 if( obj.options.image_url == "" && obj.options.image_dataurl == "" )
