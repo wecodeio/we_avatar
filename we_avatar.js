@@ -72,6 +72,12 @@ function we_init_video(dom_id) {
                 video.src = vendorURL.createObjectURL(stream);
             }
             we_stream = stream;
+            // Feature detect |stop()|. See
+            // https://developers.google.com/web/updates/2015/07/mediastream-deprecations
+            if (!we_stream.stop) {
+                we_stream.stop =
+                  we_stream.getTracks()[0].stop.bind(we_stream.getTracks()[0]);
+            }
             video.play();
         },
         function(err) {
