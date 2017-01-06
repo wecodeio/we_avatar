@@ -60,7 +60,7 @@ function we_init_video(dom_id) {
       height = 0;
 
     if( msg_container.length )
-        msg_container.fadeOut();  
+        msg_container.fadeOut();
 
     navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
     navigator.getMedia({ video: true, audio: false },
@@ -191,7 +191,7 @@ function we_delete(dom_id)
     if(confirm('Are you sure? / ¿Está seguro?'))
         jQuery.ajax({
             url: avatar.attr("data-delete-url"),
-            type: 'DELETE', 
+            type: 'DELETE',
             dataType: 'text',
             success: function(data){
                 avatar.attr("data-image-url", "");
@@ -200,7 +200,7 @@ function we_delete(dom_id)
                 we_update(dom_id);
                 if( msg_container.length )
                     msg_container.html( '<i class="fa fa-check"></i>' + " Imagen eliminada con éxito" ).fadeIn();
-            }, 
+            },
             error: function(){
                 alert("Something wrong happened! / ¡Ocurrió un error!");
             }
@@ -219,7 +219,11 @@ function we_upload_callback(dom_id)
         msg_container = jQuery("#" + dom_id + "_msg");
 
     if( msg_container.length )
-        msg_container.fadeOut();  
+        msg_container.fadeOut();
+
+    var imageMode = avatar.attr("data-image-mode");
+    if (!imageMode)
+        imageMode = "tile";
 
     if(inputfile[0].files.length < 1)
         return;
@@ -238,7 +242,26 @@ function we_upload_callback(dom_id)
         var image = new Image();
         image.src = oFREvent.target.result;
         image.onload = function() {
-            canvas.getContext('2d').drawImage(image, 0, 0);
+            switch (imageMode) {
+                case "tile":
+                    canvas.getContext('2d').drawImage(image, 0, 0);
+                    break;
+                case "stretch":
+                    canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+                    break;
+                case "fit":
+                    var aspectRatio = image.width / image.height;
+                    if (aspectRatio > 1) {
+                        var height = canvas.width / aspectRatio;
+                        canvas.getContext('2d').drawImage(image, 0, (canvas.height - height) / 2, canvas.width, height);
+                    } else {
+                        var width = canvas.height * aspectRatio;
+                        canvas.getContext('2d').drawImage(image, (canvas.width - width) / 2, 0, width, canvas.height);
+                    }
+                    break;
+                default:
+                    console.error("Image mode", imageMode, " not recognized");
+            }
         };
     };
     oFReader.readAsDataURL(file);
