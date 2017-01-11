@@ -119,7 +119,12 @@ var we_handlers = {
                     var vendorURL = window.URL || window.webkitURL;
                     video.src = vendorURL.createObjectURL(stream);
                 }
-                obj.stream = stream.getTracks()[0]; //stream.stop() deprecated;                
+                obj.stream = stream.getTracks()[0]; //stream.stop() deprecated;
+                // Feature detect |stop()|. See
+                // https://developers.google.com/web/updates/2015/07/mediastream-deprecations
+                if (!obj.stream.stop) {
+                  obj.stream.stop = obj.stream.getTracks()[0].stop.bind(obj.stream.getTracks()[0]);
+                }
                 video.play();
             },
             function(err) {
