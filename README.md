@@ -24,6 +24,11 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
         data-image-dataurl=""
         data-post-url=""
         data-delete-url=""
+        data-save-success-msg=""
+        data-save-error-msg=""
+        data-delete-confirm=""
+        data-delete-success-msg=""
+        data-delete-error-msg=""
         style="width:160px; height:120px">
     </div>
     <div id="user_avatar_toolbar" class="we_avatar_toolbar"></div>
@@ -37,6 +42,11 @@ Choose an avatar image from your webcam or a file upload using HTML5 and jQuery
 * data-image-dataurl => If you prefer, you can load the image in base64 here
 * data-post-url => URL where the upload should be POSTed.
 * data-delete-url => URL where a DELETE request will be made to delete the image.
+* data-save-success-msg => Success save message
+* data-save-error-msg => Error save message
+* data-delete-confirm => Delete confirm question
+* data-delete-success-msg => Success delete message
+* data-delete-error-msg => Error delete message
 * style => Size of the viewer/uploader
 
 ### 4. Fire it up
@@ -68,7 +78,6 @@ end
 ## To-Do
 
 * file upload -> RESIZED preview on canvas
-* show post error/success
 * CONFIG: button overlay texts & localized texts
 * CONFIG: height and width (canvas & posted image)
 
