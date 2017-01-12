@@ -1,0 +1,8 @@
+{
+	"name": "we-avatar",
+	"repo": "wecode/we_avatar.css",
+	"version": "dev-master",
+	"styles": ["we_avatar.css"],
+	"author": "Nicolás Cerrini <nicolas@wecode.io>",
+	"license": "MIT"
+}

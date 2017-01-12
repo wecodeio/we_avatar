@@ -1,0 +1,26 @@
+{
+  "name": "we-avatar",
+  "version": "0.0.0",
+  "description": "Choose an avatar image from your webcam or a file upload using HTML5 and jQuery.",
+  "main": "we_avatar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wecodeio/we_avatar.git"
+  },
+  "keywords": [
+    "we",
+    "wecode",
+    "avatar",
+    "html5",
+    "css",
+    "js"
+  ],
+  "author": "Nicolás Cerrini <nicolas@wecode.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wecodeio/we_avatar/issues"
+  }
+}
